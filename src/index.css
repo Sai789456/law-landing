@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* Font utility classes using CDN fonts */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-playfair {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Practice Areas Background Images Override */
+.practice-card::after {
+  background-image: var(--bg-image);
+}
+
+/* Tailwind CSS - Added at the end to work alongside existing styles */
+/* preflight is disabled in tailwind.config.js to preserve your custom styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
