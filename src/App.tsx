@@ -16,6 +16,13 @@ import portfolio3 from "./assets/images/portfolio/portfolio-3.jpg";
 import portfolio4 from "./assets/images/portfolio/portfolio-4.jpg";
 import portfolio5 from "./assets/images/portfolio/portfolio-5.jpg";
 import portfolio6 from "./assets/images/portfolio/portfolio-6.jpg";
+
+declare global {
+  interface Window {
+    AOS: any;
+  }
+}
+
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [activeFilter, setActiveFilter] = useState("all");
@@ -157,14 +164,17 @@ function App() {
     { title: "Justice May For You If You Are Innocent", date: null },
     { title: "Who Can A Victim Sue After A Car Accident?", date: null },
   ];
+
+  // Auto-rotate testimonials
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTestimonial((prev) => (prev + 1) % testimonialPages);
-    }, 10000); // change 5000 to any duration in ms
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [testimonialPages]);
 
+  // Auto-rotate hero slides
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -172,6 +182,7 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  // Progress bar animation on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -192,7 +203,20 @@ function App() {
       if (bar) observer.observe(bar);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // 🔥 AOS INIT (using CDN)
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.AOS) {
+      window.AOS.init({
+        duration: 800,
+        once: true,
+        offset: 120,
+      });
+    }
   }, []);
 
   const handleSmoothScroll = (
@@ -230,13 +254,14 @@ function App() {
       console.warn("No PDF mapped for category:", item.category);
     }
   };
+
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     targetId: string,
     offset: number = 100
   ) => {
     handleSmoothScroll(e, targetId, offset);
-    setIsMobileNavOpen(false); // close mobile on link click
+    setIsMobileNavOpen(false);
   };
 
   // ========== SECTION FUNCTIONS ==========
@@ -436,6 +461,7 @@ function App() {
   const renderHeroSection = () => (
     <section
       id="home"
+      data-aos="fade-up"
       className="relative min-h-[800px] w-full overflow-visible bg-white mb-0 pb-0"
     >
       <div className="relative w-full h-full overflow-visible min-h-[800px]">
@@ -543,7 +569,7 @@ function App() {
   );
 
   const renderAboutSection = () => (
-    <section id="about" className="py-20 bg-white">
+    <section id="about" data-aos="fade-up" className="py-20 bg-white">
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="grid grid-cols-[1fr_1.2fr] gap-12 items-center w-full">
           <div className="relative rounded-2xl overflow-visible">
@@ -636,7 +662,7 @@ function App() {
   );
 
   const renderServicesSection = () => (
-    <section id="services" className="practice-section">
+    <section id="services" data-aos="fade-up" className="practice-section">
       <div className="container">
         <div className="section-header">
           <div className="section-badge">Services</div>
@@ -706,7 +732,7 @@ function App() {
   );
 
   const renderSkillsSection = () => (
-    <section id="skills" className="py-20 bg-white">
+    <section id="skills" data-aos="fade-up" className="py-20 bg-white">
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="grid grid-cols-2 gap-16 items-center w-full">
           <div className="pr-8">
@@ -792,7 +818,11 @@ function App() {
   );
 
   const renderResumeSection = () => (
-    <section id="resume" className="py-[5.5rem] bg-bg-section">
+    <section
+      id="resume"
+      data-aos="fade-up"
+      className="py-[5.5rem] bg-bg-section"
+    >
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="text-center mb-10">
           <div className="uppercase tracking-widest text-xs text-gold-light mb-3 inline-flex items-center gap-3 font-semibold font-poppins">
@@ -917,7 +947,7 @@ function App() {
   );
 
   const renderPortfolioSection = () => (
-    <section id="portfolio" className="py-20 bg-white">
+    <section id="portfolio" data-aos="fade-up" className="py-20 bg-white">
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="text-center mb-10">
           <div className="uppercase tracking-widest text-xs text-gold-light mb-3 inline-flex items-center gap-3 font-semibold font-poppins">
@@ -993,7 +1023,11 @@ function App() {
   );
 
   const renderTestimonialSection = () => (
-    <section id="testimonial" className="py-20 bg-bg-section">
+    <section
+      id="testimonial"
+      data-aos="fade-up"
+      className="py-20 bg-bg-section"
+    >
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -1058,7 +1092,7 @@ function App() {
             </div>
           </div>
 
-          {/* navigation buttons + dots stay the same below */}
+          {/* navigation buttons + dots */}
           <div className="flex items-center justify-center gap-6 mt-10">
             <button
               onClick={() =>
@@ -1076,12 +1110,14 @@ function App() {
                   key={dot}
                   className="w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300"
                   style={{
-                    backgroundColor: dot === activeTestimonial ? '#c89b3c' : 'transparent',
-                    border: '1px solid',
-                    borderColor: dot === activeTestimonial ? '#c89b3c' : '#d0d0d0',
-                    display: 'inline-block',
-                    minWidth: '10px',
-                    minHeight: '10px',
+                    backgroundColor:
+                      dot === activeTestimonial ? "#c89b3c" : "transparent",
+                    border: "1px solid",
+                    borderColor:
+                      dot === activeTestimonial ? "#c89b3c" : "#d0d0d0",
+                    display: "inline-block",
+                    minWidth: "10px",
+                    minHeight: "10px",
                   }}
                   onClick={() => setActiveTestimonial(dot)}
                 ></span>
@@ -1102,7 +1138,7 @@ function App() {
   );
 
   const renderContactSection = () => (
-    <section id="contact" className="py-20 bg-white">
+    <section id="contact" data-aos="fade-up" className="py-20 bg-white">
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -1124,7 +1160,8 @@ function App() {
               Interested in discussing?
             </h1>
             <p className="text-[#777] text-sm mb-8 leading-normal">
-              24/7 We're ready to help our dedicated customers for any Suports
+              24/7 We&apos;re ready to help our dedicated customers for any
+              Suports
             </p>
             <form
               className="w-full"
@@ -1225,7 +1262,7 @@ function App() {
   );
 
   const renderBlogSection = () => (
-    <section id="blog" className="py-20 bg-bg-section">
+    <section id="blog" data-aos="fade-up" className="py-20 bg-bg-section">
       <div className="container mx-auto px-8 max-w-[1200px]">
         <div className="text-center mb-14">
           <div className="inline-flex items-center justify-center gap-3 mb-4">
@@ -1235,10 +1272,10 @@ function App() {
             </span>
             <span className="w-10 h-px bg-gold-light"></span>
           </div>
-          <h2 className="font-playfair text-[2.5rem] font-bold text-text-dark m-0 leading-tight">
-            Learn something more from my latest news
-          </h2>
         </div>
+        <h2 className="font-playfair text-[2.5rem] font-bold text-text-dark m-0 leading-tight text-center mb-10">
+          Learn something more from my latest news
+        </h2>
         <div className="grid grid-cols-2 gap-8 w-full">
           {blogPosts.map((post, index) => (
             <article
