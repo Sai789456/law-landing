@@ -258,7 +258,7 @@ function App() {
             <a
               href="#"
               onClick={(e) => handleNavClick(e, "home")}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Home
               <span className="absolute left-0 bottom-0 w-1/2 h-0.5 bg-primary"></span>
@@ -266,49 +266,49 @@ function App() {
             <a
               href="#about"
               onClick={(e) => handleNavClick(e, "about", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               About
             </a>
             <a
               href="#services"
               onClick={(e) => handleNavClick(e, "services", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Services
             </a>
             <a
               href="#skills"
               onClick={(e) => handleNavClick(e, "skills", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Skills
             </a>
             <a
               href="#resume"
               onClick={(e) => handleNavClick(e, "resume", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Resume
             </a>
             <a
               href="#portfolio"
               onClick={(e) => handleNavClick(e, "portfolio", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Portfolio
             </a>
             <a
               href="#testimonial"
               onClick={(e) => handleNavClick(e, "testimonial", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Testimonial
             </a>
             <a
               href="#blog"
               onClick={(e) => handleNavClick(e, "blog", -50)}
-              className="text-xs md:text-sm font-medium text-text-muted hover:text-white relative pb-1 text-white"
+              className="text-xs md:text-sm font-medium text-white hover:text-white relative pb-1"
             >
               Blog
             </a>
@@ -455,7 +455,7 @@ function App() {
               minHeight: "800px",
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-black/40 to-transparent z-[1]"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/65 to-transparent z-[1]"></div>
             <div
               className="absolute bottom-0 left-0 right-0 w-full h-[150px] bg-gradient-to-t from-white/40 via-white/20 to-transparent z-[2] pointer-events-none"
               style={{
@@ -1074,11 +1074,15 @@ function App() {
               {Array.from({ length: testimonialPages }).map((_, dot) => (
                 <span
                   key={dot}
-                  className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300 ${
-                    dot === activeTestimonial
-                      ? "bg-primary border-primary"
-                      : "bg-transparent border border-[#d0d0d0]"
-                  }`}
+                  className="w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-300"
+                  style={{
+                    backgroundColor: dot === activeTestimonial ? '#c89b3c' : 'transparent',
+                    border: '1px solid',
+                    borderColor: dot === activeTestimonial ? '#c89b3c' : '#d0d0d0',
+                    display: 'inline-block',
+                    minWidth: '10px',
+                    minHeight: '10px',
+                  }}
                   onClick={() => setActiveTestimonial(dot)}
                 ></span>
               ))}
@@ -1155,7 +1159,7 @@ function App() {
                 </div>
                 <div className="flex-1 relative">
                   <select
-                    className="w-full py-3.5 px-4 border border-gray-200 rounded text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border appearance-none cursor-pointer text-gray-600 pr-10"
+                    className="w-full py-3.5 px-4 border border-gray-200 rounded text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border appearance-none cursor-pointer pr-10"
                     defaultValue=""
                   >
                     <option value="" disabled>
