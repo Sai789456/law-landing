@@ -272,9 +272,9 @@ function App() {
         <div className="flex items-center justify-between py-3 md:py-4">
           {/* Logo */}
           <div className="flex items-center gap-3 text-lg md:text-xl font-semibold text-primary">
-            <div className="w-9 h-9 rounded-full border border-primary flex items-center justify-center text-base">
+            {/* <div className="w-9 h-9 rounded-full border border-primary flex items-center justify-center text-base">
               <i className="fa-solid fa-pen"></i>
-            </div>
+            </div> */}
             <span>Respet</span>
           </div>
 
@@ -1208,14 +1208,14 @@ function App() {
                   <input
                     type="text"
                     placeholder="Your Name"
-                    className="w-full py-3 md:py-3.5 px-3 md:px-4 border border-gray-200 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
+                    className="w-full block py-3 md:py-3.5 px-3 md:px-4 border border-gray-100 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
                   />
                 </div>
                 <div className="flex-1 relative">
                   <input
                     type="text"
                     placeholder="Phone"
-                    className="w-full py-3 md:py-3.5 px-3 md:px-4 border border-gray-200 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
+                    className="w-full block py-3 md:py-3.5 px-3 md:px-4 border border-gray-100 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
                   />
                 </div>
               </div>
@@ -1224,12 +1224,12 @@ function App() {
                   <input
                     type="email"
                     placeholder="Email"
-                    className="w-full py-3 md:py-3.5 px-3 md:px-4 border border-gray-200 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
+                    className="w-full block py-3 md:py-3.5 px-3 md:px-4 border border-gray-100 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
                   />
                 </div>
                 <div className="flex-1 relative">
                   <select
-                    className="w-full py-3 md:py-3.5 px-3 md:px-4 border border-gray-200 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border appearance-none cursor-pointer pr-8 md:pr-10"
+                    className="w-full block py-3 md:py-3.5 px-3 md:px-4 border border-gray-100 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border appearance-none cursor-pointer pr-8 md:pr-10"
                     defaultValue=""
                   >
                     <option value="" disabled>
@@ -1246,7 +1246,7 @@ function App() {
               </div>
               <textarea
                 placeholder="Your Message"
-                className="h-[90px] md:h-[100px] resize-none mb-4 md:mb-5 w-full block py-3 md:py-3.5 px-3 md:px-4 border border-gray-200 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
+                className="h-[90px] md:h-[100px] resize-none mb-4 md:mb-5 w-full block py-3 md:py-3.5 px-3 md:px-4 border border-gray-100 rounded text-[12px] md:text-[13px] font-poppins text-gray-800 outline-none bg-white transition-all duration-300 focus:border-gold-light box-border"
               ></textarea>
               <button
                 type="submit"

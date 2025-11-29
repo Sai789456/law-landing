@@ -2618,7 +2618,7 @@ header {
 .form-container textarea {
   width: 100%;
   padding: 14px 15px;
-  border: 1px solid #eee;
+  border: 1px solid #f3f4f6;
   border-radius: 4px;
   font-family: "Poppins", "Roboto", sans-serif;
   font-size: 13px;
@@ -2627,6 +2627,16 @@ header {
   background: #fff;
   transition: 0.3s;
   box-sizing: border-box;
+  display: block;
+}
+
+/* Contact Section Inputs - Match textarea styling */
+#contact input[type="text"],
+#contact input[type="email"],
+#contact select,
+#contact textarea {
+  border: 1px solid #f3f4f6 !important;
+  display: block !important;
 }
 
 .form-container input:focus,
